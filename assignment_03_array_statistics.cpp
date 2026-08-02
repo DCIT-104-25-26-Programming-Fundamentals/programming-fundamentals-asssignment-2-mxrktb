@@ -1,7 +1,8 @@
 // =============================================================================
 // PROGRAMMING FUNDAMENTALS — Assignment 3
 // =============================================================================
-//
+// Name: [Mark Junior Techie-Burns] 
+// Student ID: [22492537]
 // TASK: Array Statistics Calculator
 //
 // Write a C++ program that reads a collection of numbers from the user
@@ -41,4 +42,72 @@
 
 #include <iostream>
 using namespace std;
-
+int calculateSum(int numbers[], int size) {
+    int sum = 0;
+    for (int i = 0; i < size; ++i) {
+        sum += numbers[i];
+    }
+    return sum;
+}
+double calculateAverage(int numbers[], int size) {
+    if (size == 0) return 0.0; // Avoid division by zero
+    int sum = calculateSum(numbers, size);
+    return static_cast<double>(sum) / size;
+}
+int findMaximum(int numbers[], int size) {
+    if (size == 0) return 0; // Handle empty array case
+    int max = numbers[0];
+    for (int i = 1; i < size; ++i) {
+        if (numbers[i] > max) {
+            max = numbers[i];
+        }
+    }
+    return max;
+}
+int findMinimum(int numbers[], int size) {
+    if (size == 0) return 0; // Handle empty array case
+    int min = numbers[0];
+    for (int i = 1; i < size; ++i) {
+        if (numbers[i] < min) {
+            min = numbers[i];
+        }
+    }
+    return min;
+}
+int main() {
+    int N;
+    
+    // Prompt the user for the number of inputs
+    cout << "How many numbers? ";
+    cin >> N;
+    
+    // Validate the input
+    if (N <= 0) {
+        cout << "Error: Number of inputs must be a positive integer." << endl;
+        return 1; // Exit with error
+    }
+    
+    int* numbers = new int[N]; // Dynamically allocate array
+    
+    // Read the numbers from the user
+    for (int i = 0; i < N; ++i) {
+        cout << "Enter number " << (i + 1) << ": ";
+        cin >> numbers[i];
+    }
+    
+    // Calculate statistics
+    int sum = calculateSum(numbers, N);
+    double average = calculateAverage(numbers, N);
+    int max = findMaximum(numbers, N);
+    int min = findMinimum(numbers, N);
+    
+    // Display results
+    cout << "\nResults:" << endl;
+    cout << "Sum:     " << sum << endl;
+    cout << "Average: " << average << endl;
+    cout << "Maximum: " << max << endl;
+    cout << "Minimum: " << min << endl;
+    
+    delete[] numbers; // Free dynamically allocated memory
+    return 0;
+}

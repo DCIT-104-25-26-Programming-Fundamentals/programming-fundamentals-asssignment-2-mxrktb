@@ -1,7 +1,8 @@
 // =============================================================================
 // PROGRAMMING FUNDAMENTALS — Assignment 6
 // =============================================================================
-//
+// Name: [Mark Junior Techie-Burns]
+// Student ID: [22492537]
 // TASK: Multiplication Table Generator
 //
 // Write a C++ program that generates multiplication tables using loops
@@ -57,3 +58,46 @@
 #include <iostream>
 using namespace std;
 
+void printMultiplicationTable(int number) {
+    cout << "Multiplication Table for " << number << ":" << endl;
+    for (int i = 1; i <= 12; ++i) {
+        cout << number << " x " << i << " = " << (number * i) << endl;
+    }
+}
+void printMultiplicationTablesUpToN(int n) {
+    if (n <= 0) {
+        cout << "Error: N must be a positive integer." << endl;
+        return;
+    }
+    
+    for (int i = 1; i <= n; ++i) {
+        printMultiplicationTable(i);
+        if (i < n) {
+            cout << "---------------------------" << endl;
+        }
+    }
+}
+int main() {
+    int choice;
+    cout << "Multiplication Table Generator Menu:" << endl;
+    cout << "1. Print Multiplication Table for a Single Number" << endl;
+    cout << "2. Print Multiplication Tables from 1 to N" << endl;
+    cout << "Enter your choice: ";
+    cin >> choice;
+
+    if (choice == 1) {
+        int number;
+        cout << "Enter a number: ";
+        cin >> number;
+        printMultiplicationTable(number);
+    } else if (choice == 2) {
+        int n;
+        cout << "Enter a positive integer N: ";
+        cin >> n;
+        printMultiplicationTablesUpToN(n);
+    } else {
+        cout << "Error: Invalid choice." << endl;
+    }
+
+    return 0;
+}
